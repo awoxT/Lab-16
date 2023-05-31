@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Приклад обробників подій</title>
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      // Обробники подій для рисунків
+      var images = document.querySelectorAll('.image');
+      images.forEach(function(image) {
+        image.onclick = function() {
+          alert(this.src);
+        };
+      });
+
+      // Обробники подій для посилань
+      var links = document.querySelectorAll('.link');
+      links.forEach(function(link) {
+        var originalTitle = link.title;
+        link.addEventListener('mouseover', function() {
+          this.title = originalTitle + ' (' + this.href + ')';
+        });
+
+        link.addEventListener('mouseout', function() {
+          this.title = originalTitle;
+        });
+
+        link.addEventListener('mouseover', function handler() {
+          this.title = originalTitle + ' (' + this.href + ')';
+          this.removeEventListener('mouseover', handler);
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1>Обробники подій</h1>
+
+  <h2>Рисунки</h2>
+  <img class="image" src="image1.jpg" alt="Image 1" width="200" height="300">
+  <img class="image" src="image2.jpg" alt="Image 2" width="200" height="300">
+  <img class="image" src="image3.jpg" alt="Image 3" width="200" height="300">
+
+  <h2>Посилання</h2>
+  <a class="link" href="https://www.example.com" title="Посилання 1">Посилання 1</a>
+  <a class="link" href="https://www.example.com" title="Посилання 2">Посилання 2</a>
+  <a class="link" href="https://www.example.com" title="Посилання 3">Посилання 3</a>
+</body>
+</html>
